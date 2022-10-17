@@ -1,0 +1,4 @@
+Starting server on port 5555
+C:\Users\Admin\Documents\Studium\Veranstaltungen - Abgaben\NTSW\Projekt FPS-Szenario-Erweiterung\FPS-Szenario-Erweiterung\workspace\CBRS\CBRS.prj
+Loading file C:\Users\Admin\Documents\Studium\Veranstaltungen - Abgaben\NTSW\Projekt FPS-Szenario-Erweiterung\FPS-Szenario-Erweiterung\workspace\CBRS\CBRS.prj
+Imported 0 instances.

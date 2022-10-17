@@ -1,0 +1,3 @@
+Starting server on port 5556
+C:\Users\Gamer\Desktop\FPS\BA_Julius_Bartels_Unity_Java_Projekt\CBRS\CBRS\CBRS.prj
+error: null
