@@ -24,6 +24,8 @@ public class StaticMenueFunctions {
     {
         
     }
+
+   
     
     /**
      * Singleton Desing Pattern Methode.
@@ -45,6 +47,7 @@ public class StaticMenueFunctions {
      */
     public void ChangeScene(string sceneName)
     {
+        Console.WriteLine("Test");
         SceneManager.LoadScene(sceneName);
     }
 
