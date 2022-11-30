@@ -101,6 +101,11 @@ public class GameMenueScript : MonoBehaviour
         }
     }
 
+        public void Continue()
+    {
+        gameControllerScript.ContinueGame(true);
+    }
+
 
 
     public void StartSpectatorMode()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /**
  * NOT NEEDED IN PROJECT
@@ -15,5 +15,7 @@ public class OptionsMenueScript : MonoBehaviour {
     {
         staticMenueFunctions.ChangeScene(name);
     }
+
+
 
 }
