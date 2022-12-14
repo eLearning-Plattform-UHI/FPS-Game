@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
@@ -56,6 +56,7 @@ namespace Assets.Scripts.Model
          * Maximalen Lebenspunkte eines Spielers.
          */
         public static readonly int mMaxLife = 100;
+        public static readonly int mMaxShield = 100;
         /**
          * Das GameObjekt des Spielers (grafisches 3D-Modell).
          */
@@ -106,6 +107,14 @@ namespace Assets.Scripts.Model
          * Diese Liste enthält alle Waffen, die aktuell im Besitz des Spieler sind.
          */
         private List<Weapon> mWeapons;
+
+        /**
+         * Diese Liste enthält alle Waffen, die aktuell im Besitz des Spieler sind.
+         */
+
+
+        private List<Throwable> mThrowables;
+
         /**
          * Der NavMeshAgent wird für die Bewegung des Spielers benötigt.
          */
@@ -124,6 +133,7 @@ namespace Assets.Scripts.Model
             mName = name;
             mGameObject = gameObject;
             mWeapons = new List<Weapon>();
+            mThrowables = new List<Throwable>();
             mCamera = ((GameObject)Resources.Load("Prefabs/PlayerCamera")).GetComponent<Camera>();
             mGameObject.name = name;
             mPlayerAgent = new PlayerAgent(mName);
@@ -188,14 +198,17 @@ namespace Assets.Scripts.Model
         {
             mWeapons.Clear();
             mWeapons.Add(new Pistol(mGameObject));
+            //mThrowables.Clear();
+            //mThrowables.Add(new Grenade(mGameObject));
             mEquippedWeapon = mWeapons[0];
 
             StaticMenueFunctions.FindComponentInChildWithTag<Transform>(mGameObject, "Machine Gun").gameObject.SetActive(false);
             StaticMenueFunctions.FindComponentInChildWithTag<Transform>(mGameObject, "Pistol").gameObject.SetActive(false);
+            
 
             TriggerWeaponActivation();
 
-            mPlayerHealth = mMaxLife;
+            mPlayerHealth = mMaxLife + mMaxShield;
             mIsAlive = true;
         }
         /**
@@ -276,6 +289,16 @@ namespace Assets.Scripts.Model
         public void TakeDamage(int damage)
         {
             mPlayerHealth -= damage;
+            if (mPlayerHealth <= 0){
+                mPlayerHealth = 0;
+                mStatus = new Status();
+                mStatus.enemiesLastKnownPosition = new Vector3(10000f, 10000f, 10000f);
+                mStatus.isEnemyVisible = false;
+                mStatus.isEnemyAlive = false;
+                mStatus.lastPosition = (int)Status.LastPosition.unknown;
+                mStatus.distanceToEnemy = (int)Status.Distance.unknown;
+            }
+            mIsAlive = mPlayerHealth > 0;
         }
         /**
          * Diese Methode ermöglicht das Schießen eines Spielers.

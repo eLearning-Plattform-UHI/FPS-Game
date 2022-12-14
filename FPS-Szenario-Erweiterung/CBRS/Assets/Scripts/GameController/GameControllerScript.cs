@@ -232,7 +232,6 @@ public class GameControllerScript : MonoBehaviour
         mGameStart = DateTime.Now;
 
         
-
         Debug.Log("Game start at: " + StaticMenueFunctions.GetTimeStampString(mGameStart));
 
         mRespawnTime = 7f;

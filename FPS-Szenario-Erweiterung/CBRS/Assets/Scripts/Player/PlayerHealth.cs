@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
      * Lebenspunkte für den Lebensbalken.
      */
     public int mStartingHealth = Player.mMaxLife;
+    public int mStartingShield = Player.mMaxShield;
     /**
      * Aktuelle Lebenspunkte.
      */
@@ -69,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         playerAudio = GetComponent<AudioSource>();
-        mCurrentHealth = mStartingHealth;
+        mCurrentHealth = mStartingHealth + mStartingShield;
     }
 
     /**
@@ -169,7 +170,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetValues()
     {
         damaged = false;
-        mCurrentHealth = mStartingHealth;
+        mCurrentHealth = mStartingHealth + mStartingShield;
         healthSlider.value = mCurrentHealth;
 
         
