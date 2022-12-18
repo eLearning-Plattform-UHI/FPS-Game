@@ -49,6 +49,10 @@ namespace Assets.Scripts.Model
          */
         public int mPlayerHealth { get; set; }
         /**
+         * Das aktuelle Schild des Spielers.
+         */
+        public int mPlayerShield { get; set; }
+        /**
          * Identifier wird zur Zuweisung bei der Erstellung von Spielerobjekten benötigt (CBR-Spieler, Menschlicher Spieler, Non-CBR-Spieler, ...).
          */
         public int mIdentifier { get; set; }
@@ -208,7 +212,8 @@ namespace Assets.Scripts.Model
 
             TriggerWeaponActivation();
 
-            mPlayerHealth = mMaxLife + mMaxShield;
+            mPlayerHealth = mMaxLife;
+            mPlayerShield = mMaxShield;
             mIsAlive = true;
         }
         /**
@@ -287,8 +292,15 @@ namespace Assets.Scripts.Model
          * Diese Methode verringert die Lebenspunkte des Spielers um die gegebenen Schadenspunkte.
          */
         public void TakeDamage(int damage)
-        {
-            mPlayerHealth -= damage;
+        {   
+            if(damage > mPlayerShield){
+                int offsetHealth = damage - mPlayerShield;
+                mPlayerShield = 0;
+                mPlayerHealth -= offsetHealth;
+            } else {
+                mPlayerShield -= damage;
+            }
+
             if (mPlayerHealth <= 0){
                 mPlayerHealth = 0;
                 mStatus = new Status();

@@ -24,9 +24,14 @@ namespace Assets.Scripts.Util
                     {
                         if (player.mPlayerHealth < Player.mMaxLife)
                         {
+                            int missingHealth = Player.mMaxLife - player.mPlayerHealth;
+                            int addShieldNumber = Player.mMaxLife - missingHealth;
                             player.mPlayerHealth = Player.mMaxLife;
+                            player.mPlayerShield = addShieldNumber;
                             GameControllerScript.mHeartCollected = true;
                             Destroy(gameObject);
+                        } else {
+                            player.mPlayerShield = Player.mMaxShield;
                         }
 
                         if (player.mCBR)

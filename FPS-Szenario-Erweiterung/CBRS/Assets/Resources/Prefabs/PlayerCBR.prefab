@@ -219,6 +219,7 @@ MonoBehaviour:
   mStartingHealth: 100
   mStartingShield: 100
   mCurrentHealth: 0
+  mCurrentShield: 0
   mFlashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
 --- !u!114 &114321073678835082

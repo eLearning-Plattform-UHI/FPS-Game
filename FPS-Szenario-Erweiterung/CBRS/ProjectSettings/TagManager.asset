@@ -18,6 +18,7 @@ TagManager:
   - Cover
   - MovingCover
   - AmmunitionLarge
+  - ShieldSlider
   layers:
   - Default
   - TransparentFX

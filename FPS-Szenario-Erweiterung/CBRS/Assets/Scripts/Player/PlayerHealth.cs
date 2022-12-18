@@ -14,9 +14,10 @@ public class PlayerHealth : MonoBehaviour
     public int mStartingHealth = Player.mMaxLife;
     public int mStartingShield = Player.mMaxShield;
     /**
-     * Aktuelle Lebenspunkte.
+     * Aktuelle Lebenspunkte/Schild.
      */
     public int mCurrentHealth;
+    public int mCurrentShield;
     /**
      * Bei einem Treffer "blitzt" (flasht) ein rotes Bild auf --> Geschwindigkeit des Flashens.
      */
@@ -38,6 +39,10 @@ public class PlayerHealth : MonoBehaviour
      */
     private Slider healthSlider;
     /**
+     * Slider für die Darstellung des Schilds.
+     */
+    private Slider shieldSlider;
+    /**
      * Image, welches flashen soll, wenn Schaden genommen wird.
      */
     private Image damageImage;
@@ -47,9 +52,13 @@ public class PlayerHealth : MonoBehaviour
      */
     private GameObject imageObject;
     /**
-     * GameObject des Sliders.
+     * GameObject des Health Sliders.
      */
     private GameObject sliderObject;
+    /**
+     * GameObject des Shield Sliders.
+     */
+    private GameObject sliderShieldObject;
     /**
      * GameObject des "Kastens" für die Anzeige der Munition.
      */
@@ -70,7 +79,8 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         playerAudio = GetComponent<AudioSource>();
-        mCurrentHealth = mStartingHealth + mStartingShield;
+        mCurrentHealth = mStartingHealth;
+        mCurrentShield = mStartingShield;
     }
 
     /**
@@ -78,6 +88,7 @@ public class PlayerHealth : MonoBehaviour
      */
     private void InitSlider()
     {
+        // Health Slider
         if (sliderObject == null)
         {
             sliderObject = GameObject.FindGameObjectWithTag("HealthSlider");
@@ -86,6 +97,15 @@ public class PlayerHealth : MonoBehaviour
         {
             healthSlider = sliderObject.GetComponent<Slider>();
         }
+        // Shield Slider
+        if (sliderShieldObject == null)
+        {
+            sliderShieldObject = GameObject.FindGameObjectWithTag("ShieldSlider");
+        }
+        if (sliderShieldObject != null && shieldSlider == null)
+        {
+            shieldSlider = sliderShieldObject.GetComponent<Slider>();
+        }        
     }
 
     /**
@@ -147,7 +167,7 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateLifeBar(Player player)
     {
         healthSlider.value = player.mPlayerHealth;
-
+        shieldSlider.value = player.mPlayerShield;
     }
     /**
      * Diese Methode händelt alle nötigen Vorgängen, wenn der Spieler Schaden genommen hat.
@@ -155,13 +175,13 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(Player hitPlayer)
     {
         mCurrentHealth = hitPlayer.mPlayerHealth;
+        mCurrentShield = hitPlayer.mPlayerShield;
 
         InitSlider();
 
         UpdateLifeBar(hitPlayer);
 
         playerAudio.Play();
-
     }
 
     /**
@@ -170,12 +190,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetValues()
     {
         damaged = false;
-        mCurrentHealth = mStartingHealth + mStartingShield;
-        healthSlider.value = mCurrentHealth;
-
-        
+        healthSlider.value = mStartingHealth;  
+        shieldSlider.value = mStartingShield;  
     }
-
-
-
 }
