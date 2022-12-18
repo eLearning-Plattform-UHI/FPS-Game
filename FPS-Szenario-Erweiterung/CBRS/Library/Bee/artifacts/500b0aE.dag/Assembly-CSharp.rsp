@@ -421,6 +421,8 @@
 "Assets/Scripts/Util/M4A1Script.cs"
 "Assets/Scripts/Util/UpTimeScript.cs"
 "Assets/Scripts/Util/WinChanceScript.cs"
+"Assets/Throwables/grenade/Grenade.cs"
+"Assets/Throwables/Throwable.cs"
 -langversion:9.0
 
 /deterministic

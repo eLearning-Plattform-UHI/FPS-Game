@@ -27,6 +27,13 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
+    Unity.ProBuilder.Editor.dll:
+    - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
+    - UnityEditor.ProBuilder.ProbuilderScaleTool
+    Unity.ProBuilder.dll:
+    - UnityEngine.ProBuilder.ColliderBehaviour
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -56,7 +63,16 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: GameControllerScript
+    methodName: ContinueGame
+  - assembly: Assembly-CSharp
+    fullTypeName: GameMenueScript
+    methodName: StartSpectatorMode
+  - assembly: Assembly-CSharp
+    fullTypeName: GameMenueScript
+    methodName: Continue
   sceneClasses:
     Assets/_Scenes/Level01.unity:
     - Class: 1
@@ -112,23 +128,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4196}
     - Class: 114
-      Script: {instanceID: 4462}
+      Script: {instanceID: 4464}
     - Class: 114
-      Script: {instanceID: 4636}
+      Script: {instanceID: 4638}
     - Class: 114
-      Script: {instanceID: 4962}
+      Script: {instanceID: 4964}
     - Class: 114
-      Script: {instanceID: 5248}
+      Script: {instanceID: 5250}
     - Class: 114
-      Script: {instanceID: 5624}
+      Script: {instanceID: 5626}
     - Class: 114
-      Script: {instanceID: 5676}
+      Script: {instanceID: 5678}
     - Class: 114
-      Script: {instanceID: 6266}
+      Script: {instanceID: 6268}
     - Class: 114
-      Script: {instanceID: 6818}
+      Script: {instanceID: 6822}
     - Class: 114
-      Script: {instanceID: 6948}
+      Script: {instanceID: 6952}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -164,8 +180,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 4
       Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
     - Class: 23
@@ -180,17 +194,69 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
-    - Class: 81
+    - Class: 74
       Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1650}
+    - Class: 114
+      Script: {instanceID: 2292}
+    - Class: 114
+      Script: {instanceID: 2558}
+    - Class: 114
+      Script: {instanceID: 2720}
+    - Class: 114
+      Script: {instanceID: 2990}
+    - Class: 114
+      Script: {instanceID: 3700}
+    - Class: 114
+      Script: {instanceID: 4196}
+    - Class: 114
+      Script: {instanceID: 4464}
+    - Class: 114
+      Script: {instanceID: 4502}
+    - Class: 114
+      Script: {instanceID: 4638}
+    - Class: 114
+      Script: {instanceID: 4964}
+    - Class: 114
+      Script: {instanceID: 5250}
+    - Class: 114
+      Script: {instanceID: 5626}
+    - Class: 114
+      Script: {instanceID: 5678}
+    - Class: 114
+      Script: {instanceID: 6268}
+    - Class: 114
+      Script: {instanceID: 6952}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
     - Class: 850595691
       Script: {instanceID: 0}
@@ -260,13 +326,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3922}
     - Class: 114
-      Script: {instanceID: 4962}
+      Script: {instanceID: 4964}
     - Class: 114
-      Script: {instanceID: 5248}
+      Script: {instanceID: 5250}
     - Class: 114
-      Script: {instanceID: 5676}
+      Script: {instanceID: 5678}
     - Class: 114
-      Script: {instanceID: 6650}
+      Script: {instanceID: 6654}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -339,13 +405,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 4962}
+      Script: {instanceID: 4964}
     - Class: 114
-      Script: {instanceID: 5248}
+      Script: {instanceID: 5250}
     - Class: 114
-      Script: {instanceID: 5676}
+      Script: {instanceID: 5678}
     - Class: 114
-      Script: {instanceID: 6372}
+      Script: {instanceID: 6374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -413,7 +479,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: d71310307ccd377a7fabc848afb4f079
+      Hash: 15997233b054816b125010599fac5310
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerHealth
@@ -719,6 +785,12 @@ ScriptsOnlyBuild:
     className: EnemyHealthScript
   - hash:
       serializedVersion: 2
+      Hash: 7eb03c84ff85d336d2c9e3d75b977697
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Grenade
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1017,6 +1089,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Assets.Scripts.Util
     className: M4A1Script
+  - hash:
+      serializedVersion: 2
+      Hash: 7eb03c84ff85d336d2c9e3d75b977697
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Throwable
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
