@@ -517,7 +517,40 @@ public class GameControllerScript : MonoBehaviour
             if (mHumanControlled != null)
             {
                 Debug.Log(mHumanControlled.mName + " tries to switch weapon!");
-                StartCoroutine(SwitchWeapon());
+                StartCoroutine(SwitchWeapon(-1));
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (mHumanControlled != null)
+            {
+                Debug.Log(mHumanControlled.mName + " tries to switch to weapon 1!");
+                StartCoroutine(SwitchWeapon(0));
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (mHumanControlled != null)
+            {
+                Debug.Log(mHumanControlled.mName + " tries to switch to weapon 2!");
+                StartCoroutine(SwitchWeapon(1));
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (mHumanControlled != null)
+            {
+                Debug.Log(mHumanControlled.mName + " tries to switch to weapon 3!");
+                StartCoroutine(SwitchWeapon(2));
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (mHumanControlled != null)
+            {
+                Debug.Log(mHumanControlled.mName + " tries to switch to weapon 4!");
+                StartCoroutine(SwitchWeapon(3));
             }
         }
 
@@ -550,11 +583,11 @@ public class GameControllerScript : MonoBehaviour
     /**
      * Subroutine, um die Waffe zu wechseln.
      */
-    public IEnumerator SwitchWeapon()
+    public IEnumerator SwitchWeapon(int weaponindex)
     {
         mIsSwitching = true;
         yield return new WaitForSeconds(mReloadTimer);
-        mHumanControlled.SwitchWeapon(-1);
+        mHumanControlled.SwitchWeapon(weaponindex);
         mIsSwitching = false;
     }
 
