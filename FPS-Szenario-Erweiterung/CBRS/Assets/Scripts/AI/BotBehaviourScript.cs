@@ -88,7 +88,7 @@ namespace Assets.Scripts.AI
                     {
                         if ((mPlayerWithoutCBR.GetWeaponCount() == 2 && !mPlayerWithoutCBR.mEquippedWeapon.mName.Equals("Machine Gun")) || (mPlayerWithoutCBR.GetWeaponCount() == 2 && mPlayerWithoutCBR.mEquippedWeapon.IsWeaponEmpty()))
                         {
-                            mPlayerWithoutCBR.SwitchWeapon();
+                            mPlayerWithoutCBR.SwitchWeapon(1);
                         }
 
                         if (mPlayerWithoutCBR.mStatus.distanceToEnemy == (int)Status.Distance.middle && CommonUnityFunctions.EnemyInShootingLine(mPlayerWithoutCBR, mEnemy))

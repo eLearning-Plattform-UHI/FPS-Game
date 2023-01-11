@@ -178,7 +178,7 @@ namespace Assets.Scripts.Util
                 }
                 else if (action.GetType() == typeof(SwitchWeapon))
                 {
-                    player.SwitchWeapon();
+                    player.SwitchWeapon(-1);
                 }
                 else if (action.GetType() == typeof(UseCover))
                 {

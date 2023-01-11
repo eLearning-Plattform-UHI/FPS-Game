@@ -554,7 +554,7 @@ public class GameControllerScript : MonoBehaviour
     {
         mIsSwitching = true;
         yield return new WaitForSeconds(mReloadTimer);
-        mHumanControlled.SwitchWeapon();
+        mHumanControlled.SwitchWeapon(-1);
         mIsSwitching = false;
     }
 

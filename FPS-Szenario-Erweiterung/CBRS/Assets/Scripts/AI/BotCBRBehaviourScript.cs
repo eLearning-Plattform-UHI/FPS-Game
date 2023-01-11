@@ -72,7 +72,7 @@ namespace Assets.Scripts.AI
             {
                 if (mPlayerWithCBR.mEquippedWeapon.mName.Equals("Pistol") && mPlayerWithCBR.GetWeaponCount() == 2)
                 {
-                    mPlayerWithCBR.SwitchWeapon();
+                    mPlayerWithCBR.SwitchWeapon(1);
                 }
 
                 mTimer = 0f;

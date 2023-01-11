@@ -90,6 +90,9 @@ namespace Assets.Scripts.Model
         /**
          * Referenz auf das Skript, was zum Schießen benötigt wird.
          */
+
+        private int currentWeaponIndex { get; set; }
+
         public PlayerShooting mPlayerShooting { get; set; }
         /**
          * Referenz auf das Skript, was die rudimentäre KI für den computergesteuerten Spieler implementiert.
@@ -132,6 +135,7 @@ namespace Assets.Scripts.Model
          */
         public Player(string name, GameObject gameObject)
         {
+            currentWeaponIndex = 0;
             mStatus = new Status();
             mStatistics = new Statistics();
             mName = name;
@@ -226,63 +230,82 @@ namespace Assets.Scripts.Model
         /**
          * Diese Methode sorgt für den Waffenwechsel des Spielers.
          */
-        public void SwitchWeapon()
-        {
-            if (mWeapons.Count > 1)
-            {
-                if (mWeapons[0] == mEquippedWeapon)
-                {
-                    if (mWeapons[1].mInPossess && (mWeapons[1].mCurrentMagazineAmmu > 0 || mWeapons[1].mCurrentOverallAmmu > 0))
-                    {
-                        mEquippedWeapon = mWeapons[1];
-                        if(mName == "Trivial Player")
-                        {
-                            WinChanceScript.kiWeapon += 1;
-                        }
+        // public void SwitchWeapon()
+        // {
+        //     if (mWeapons.Count > 1)
+        //     {
+        //         if (mWeapons[0] == mEquippedWeapon)
+        //         {
+        //             if (mWeapons[1].mInPossess && (mWeapons[1].mCurrentMagazineAmmu > 0 || mWeapons[1].mCurrentOverallAmmu > 0))
+        //             {
+        //                 mEquippedWeapon = mWeapons[1];
+        //                 if(mName == "Trivial Player")
+        //                 {
+        //                     WinChanceScript.kiWeapon += 1;
+        //                 }
 
-                        if(mName == "CBR Player")
-                        {
-                            WinChanceScript.cbrWeapon += 1;
-                        }
-                    }
-                }
-                else if (mWeapons[1] == mEquippedWeapon)
-                {
-                    if (mWeapons[0].mInPossess && (mWeapons[0].mCurrentMagazineAmmu > 0 || mWeapons[0].mCurrentOverallAmmu > 0))
-                    {
-                        mEquippedWeapon = mWeapons[0];
+        //                 if(mName == "CBR Player")
+        //                 {
+        //                     WinChanceScript.cbrWeapon += 1;
+        //                 }
+        //             }
+        //         }
+        //         else if (mWeapons[1] == mEquippedWeapon)
+        //         {
+        //             if (mWeapons[0].mInPossess && (mWeapons[0].mCurrentMagazineAmmu > 0 || mWeapons[0].mCurrentOverallAmmu > 0))
+        //             {
+        //                 mEquippedWeapon = mWeapons[0];
 
-                        mEquippedWeapon = mWeapons[1];
-                        if (mName == "Trivial Player")
-                        {
-                            WinChanceScript.kiWeapon -= 1;
-                        }
+        //                 mEquippedWeapon = mWeapons[1];
+        //                 if (mName == "Trivial Player")
+        //                 {
+        //                     WinChanceScript.kiWeapon -= 1;
+        //                 }
 
-                        if (mName == "CBR Player")
-                        {
-                            WinChanceScript.cbrWeapon -= 1;
-                        }
-
-
-                    }
-                }
-
-                TriggerWeaponActivation();
+        //                 if (mName == "CBR Player")
+        //                 {
+        //                     WinChanceScript.cbrWeapon -= 1;
+        //                 }
 
 
-                if (mCBR)
-                {
-                    for (int i = 0; i < mPlan.GetActionCount(); i++)
-                    {
-                        if (mPlan.actions[i].GetType() == typeof(SwitchWeapon))
-                        {
-                            mPlan.actions[i].finished = true;
-                            break;
-                        }
-                    }
-                }
+        //             }
+        //         }
+
+        //         TriggerWeaponActivation();
+
+
+        //         if (mCBR)
+        //         {
+        //             for (int i = 0; i < mPlan.GetActionCount(); i++)
+        //             {
+        //                 if (mPlan.actions[i].GetType() == typeof(SwitchWeapon))
+        //                 {
+        //                     mPlan.actions[i].finished = true;
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        public void SwitchWeapon(int weaponSlotIndex) {
+            if (weaponSlotIndex == -1){
+                currentWeaponIndex = (currentWeaponIndex + 1) % 3;
+            } else {
+                currentWeaponIndex = weaponSlotIndex;
             }
+
+            if (currentWeaponIndex > mWeapons.Count - 1) {
+                mEquippedWeapon = mWeapons[0];
+                currentWeaponIndex = 0;
+            } else {
+                mEquippedWeapon = mWeapons[currentWeaponIndex];
+            }
+
+            TriggerWeaponActivation();
         }
+
+
 
         public override string ToString()
         {
