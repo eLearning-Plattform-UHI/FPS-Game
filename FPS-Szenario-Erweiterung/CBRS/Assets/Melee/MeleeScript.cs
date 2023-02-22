@@ -13,37 +13,48 @@ public class MeleeScript : MonoBehaviour
     public GameObject knifeObject;
     public Transform cam;
     public Transform attackPoint;
-
+    public GameObject mPlayer;
+    public GameObject knife;
+    public string mName;
+    public int mDamage;
+    
     public float meleeRange;
     public float attackCooldown;
 
     bool readyToAttack;
 
+    // public MeleeScript(GameObject player): base(player, "MeleeScript", 75, 1f, StaticMenueFunctions.FindComponentInChildWithTag<Component>(player, "MeleeScript").gameObject, 1)
+    //     {
+    //         // mPlayer = player;
+    //         // mName = name;
+    //         // mDamage = damage;
+    //         //knifeObject = weaponModel;
+    //     }
+
     void Start()
-    {
-        anim = GetComponent<Animator>();
+    {   
+        //knife = Instantiate(knifeObject, attackPoint.position, cam.rotation);
+        InvokeRepeating("Attack", 0, 10f);
+            
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(meleeKey)){
-            anim.SetBool("Active", true);
             Attack();
         }
             
     }
     private void Attack()
     {
-        
+        anim = GetComponent<Animator>();
+        anim.SetBool("Active", true);
         readyToAttack = false;
-
-        GameObject knife = Instantiate(knifeObject, attackPoint.position, cam.rotation);
-
         //Messer wird erzeugt, muss noch entfernt werden
 
         //Rigidbody knifeRb = knife.GetComponent<Rigidbody>();
-        Debug.Log(knife);
+
         Invoke(nameof(ResetAttack), attackCooldown);
 
         Collider[] hitColliders = Physics.OverlapSphere(knife.transform.position, meleeRange);
@@ -55,7 +66,7 @@ public class MeleeScript : MonoBehaviour
                         Debug.Log(hitPlayer.mName + " was hit with a knife");
                         hitPlayer.TakeDamage(100);
                         hitPlayer.mIsAlive = hitPlayer.mPlayerHealth > 0;
-
+                               
                     }
                 }
             }  

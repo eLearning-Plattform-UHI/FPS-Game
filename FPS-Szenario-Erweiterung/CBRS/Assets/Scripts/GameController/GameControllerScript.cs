@@ -525,7 +525,7 @@ public class GameControllerScript : MonoBehaviour
         {
             if (mHumanControlled != null)
             {
-                Debug.Log(mHumanControlled.mName + " tries to switch to weapon 1!");
+                Debug.Log(mHumanControlled.mName + " tries to switch to weapon 1 (pistol)!");
                 StartCoroutine(SwitchWeapon(0));
             }
         }

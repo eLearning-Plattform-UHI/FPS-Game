@@ -19,7 +19,7 @@ public class Throwable : MonoBehaviour
     public float throwCooldown;
     public float explodeCooldown;
     public float explosionRadius;
-    public float explosionDamage;
+    public int explosionDamage;
 
     public KeyCode throwKey = KeyCode.Mouse0;
     public float throwForce;
@@ -30,6 +30,7 @@ public class Throwable : MonoBehaviour
     private void Start()
     {
         readyToThrow = true;
+        InvokeRepeating("Throw", 0, 10f);
     }
 
     private void Update()
@@ -38,15 +39,19 @@ public class Throwable : MonoBehaviour
         {
             Throw();
         }
+
+
+
     }
 
-    private void Throw()
+    public void Throw()
     {   
         readyToThrow = false;
-
+        //Vector3 rotation_rnd = new Vector3(0,Random.Range(0, 360),0);
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-        Vector3 forceDirection = cam.transform.forward;
+        //Vector3 forceDirection = cam.transform.forward;
+        Vector3 forceDirection = new Vector3(Random.Range(-3, 3),Random.Range(-3, 3),Random.Range(-1, 1));
         RaycastHit hit;
 
         if(Physics.Raycast(cam.position, cam.forward, out hit, 500f))
@@ -76,7 +81,7 @@ public class Throwable : MonoBehaviour
                 foreach (Player hitPlayer in GameControllerScript.mPlayers){
                     if (hitCollider.gameObject.name == hitPlayer.mName){
                         Debug.Log(hitPlayer.mName + " was hit by grenade");
-                        hitPlayer.TakeDamage(80);
+                        hitPlayer.TakeDamage(explosionDamage);
                         hitPlayer.mIsAlive = hitPlayer.mPlayerHealth > 0;
 
                         

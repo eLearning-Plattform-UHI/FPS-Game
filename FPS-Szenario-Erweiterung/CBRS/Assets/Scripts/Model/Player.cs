@@ -116,13 +116,6 @@ namespace Assets.Scripts.Model
         private List<Weapon> mWeapons;
 
         /**
-         * Diese Liste enthält alle Waffen, die aktuell im Besitz des Spieler sind.
-         */
-
-
-        private List<Throwable> mThrowables;
-
-        /**
          * Der NavMeshAgent wird für die Bewegung des Spielers benötigt.
          */
         public NavMeshAgent mNav { get; set; }
@@ -133,6 +126,8 @@ namespace Assets.Scripts.Model
         /**
          * Der einzige Konstruktor der Klasse, der den Namen des Spielers und ein 3D-Modell des Spielers benötigt. In diesem Konstruktor werden alle relevanten Einstellungen getätigt.
          */
+
+
         public Player(string name, GameObject gameObject)
         {
             currentWeaponIndex = 0;
@@ -141,7 +136,6 @@ namespace Assets.Scripts.Model
             mName = name;
             mGameObject = gameObject;
             mWeapons = new List<Weapon>();
-            mThrowables = new List<Throwable>();
             mCamera = ((GameObject)Resources.Load("Prefabs/PlayerCamera")).GetComponent<Camera>();
             mGameObject.name = name;
             mPlayerAgent = new PlayerAgent(mName);
@@ -206,13 +200,10 @@ namespace Assets.Scripts.Model
         {
             mWeapons.Clear();
             mWeapons.Add(new Pistol(mGameObject));
-            //mThrowables.Clear();
-            //mThrowables.Add(new Grenade(mGameObject));
             mEquippedWeapon = mWeapons[0];
 
             StaticMenueFunctions.FindComponentInChildWithTag<Transform>(mGameObject, "Machine Gun").gameObject.SetActive(false);
             StaticMenueFunctions.FindComponentInChildWithTag<Transform>(mGameObject, "Pistol").gameObject.SetActive(false);
-            
 
             TriggerWeaponActivation();
 

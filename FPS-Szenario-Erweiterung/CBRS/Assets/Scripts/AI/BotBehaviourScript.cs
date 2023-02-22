@@ -84,6 +84,7 @@ namespace Assets.Scripts.AI
                     bool isGadgetNeeded = mPlayerWithoutCBR.mStatus.isGadgetNeeded;
 
 
+
                     if (mPlayerWithoutCBR.mStatus.isEnemyVisible)
                     {
                         if ((mPlayerWithoutCBR.GetWeaponCount() == 2 && !mPlayerWithoutCBR.mEquippedWeapon.mName.Equals("Machine Gun")) || (mPlayerWithoutCBR.GetWeaponCount() == 2 && mPlayerWithoutCBR.mEquippedWeapon.IsWeaponEmpty()))
